@@ -1,11 +1,13 @@
-PROGRAM=MaxFlowTest
+PROGRAM=MaximumFlowTest
+
+.PHONY: compile
+compile:
+	mkdir -p target
+	javac -d target -cp "lib/*" src/pete/*
 
 .PHONY: run
-run:
-	mkdir -p target
-	javac -d target -cp lib/com.google.ortools.jar src/pete/${PROGRAM}.java
-	java -Djava.library.path=lib -cp target:lib/com.google.ortools.jar \
-    pete.${PROGRAM}
+run: compile
+	java -Djava.library.path=lib -cp "target:lib/*" pete.${PROGRAM}
 
 .PHONY: clean
 clean:
